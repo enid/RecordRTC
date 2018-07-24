@@ -1,6 +1,6 @@
 'use strict';
 
-// Last time updated: 2018-06-17 2:39:19 AM UTC
+// Last time updated: 2018-07-24 12:17:09 PM UTC
 
 // ________________
 // RecordRTC v5.4.7
@@ -2620,6 +2620,10 @@ function StereoAudioRecorder(mediaStream, config) {
 
             function interleave(leftChannel, rightChannel) {
                 var length = leftChannel.length + rightChannel.length;
+
+                if (length > 5000000) {
+                    return new Float64Array(0);
+                }
 
                 var result = new Float64Array(length);
 

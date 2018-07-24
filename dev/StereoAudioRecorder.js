@@ -192,6 +192,10 @@ function StereoAudioRecorder(mediaStream, config) {
             function interleave(leftChannel, rightChannel) {
                 var length = leftChannel.length + rightChannel.length;
 
+                if (length > 5000000) {
+                    return new Float64Array(0);
+                }
+
                 var result = new Float64Array(length);
 
                 var inputIndex = 0;
