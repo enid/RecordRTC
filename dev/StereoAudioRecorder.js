@@ -31,6 +31,8 @@ function StereoAudioRecorder(mediaStream, config) {
 
     config = config || {};
 
+    this.timeSlice = config.timeSlice;
+
     var self = this;
 
     // variables
@@ -192,7 +194,7 @@ function StereoAudioRecorder(mediaStream, config) {
             function interleave(leftChannel, rightChannel) {
                 var length = leftChannel.length + rightChannel.length;
 
-                if (length > 5000000) {
+                if (length > 5000000 && typeof self.timeSlice !== 'undefined') {
                     return new Float64Array(0);
                 }
 
